@@ -44,8 +44,8 @@ public class ForbiddenArcanus {
 	public static final String MOD_ID = "forbidden_arcanus";
 	public static final Logger LOGGER = LogManager.getLogger(ForbiddenArcanus.MOD_ID);
 	public static final CreativeModeTab FORBIDDEN_ARCANUS = new ModItemGroup(ForbiddenArcanus.MOD_ID);
-
-	public static final RegistryManager REGISTRY_MANAGER = new RegistryManager.Builder(MOD_ID).addDefaultHelpers().addHelpers(new LootModifierRegistryHelper()).build();
+	
+	public static final RegistryManager REGISTRY_MANAGER = new RegistryManager(new ModRegistryCollector(ForbiddenArcanus.MOD_ID), null);
 
 	public static final Supplier<IForgeRegistry<ItemModifier>> ITEM_MODIFIER_REGISTRY = ModItemModifiers.MODIFIERS.makeRegistry(ItemModifier.class, () ->
 			new RegistryBuilder<ItemModifier>().setMaxID(Integer.MAX_VALUE - 1).onAdd((owner, stage, id, obj, old) -> {}
@@ -75,7 +75,7 @@ public class ForbiddenArcanus {
 		ModItemModifiers.MODIFIERS.register(modEventBus);
 		ModFoliagePlacers.FOLIAGE_PLACERS.register(modEventBus);
 		ModTreeDecorators.TREE_DECORATORS.register(modEventBus);
-
+		ModSounds.SOUNDS.register(modEventBus);
 		REGISTRY_MANAGER.getBlockHelper().setDefaultGroup(FORBIDDEN_ARCANUS);
 
 		REGISTRY_MANAGER.register(modEventBus);
@@ -105,14 +105,5 @@ public class ForbiddenArcanus {
 
 		Consequences.registerConsequences();
 		HephaestusForgeInputs.registerInputs();
-	}
-
-	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class RegistryEvents {
-
-		@SubscribeEvent
-		public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
-			ModSounds.register(event);
-		}
 	}
 }

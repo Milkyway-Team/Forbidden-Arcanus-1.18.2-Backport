@@ -31,10 +31,10 @@ import javax.annotation.Nullable;
  * @since 2022-05-24
  */
 public class ClibanoVerticalSideBlock extends HorizontalDirectionalBlock implements ClibanoPart {
-
+    
     private static final EnumProperty<ClibanoSideType> TYPE = ModBlockStateProperties.CLIBANO_SIDE_TYPE;
     private static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
-
+    
     public ClibanoVerticalSideBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
@@ -43,24 +43,24 @@ public class ClibanoVerticalSideBlock extends HorizontalDirectionalBlock impleme
                 .setValue(BOTTOM, true)
         );
     }
-
+    
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@Nonnull BlockPos pos, @Nonnull BlockState state) {
         return new ClibanoBlockEntity(pos, state);
     }
-
+    
     @Nonnull
     @Override
     public InteractionResult use(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull Player player, @Nonnull InteractionHand hand, @Nonnull BlockHitResult hit) {
         return this.openScreen(level, pos, player);
     }
-
+    
     @Override
     public void onRemove(@Nonnull BlockState state, @Nonnull Level level, @Nonnull BlockPos pos, @Nonnull BlockState newState, boolean isMoving) {
         this.onRemove(state, level, pos, newState);
     }
-
+    
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, TYPE, BOTTOM);

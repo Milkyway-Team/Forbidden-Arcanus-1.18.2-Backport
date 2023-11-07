@@ -39,23 +39,35 @@ public class ModTags {
 
     public static class Items {
         public static final TagKey<Item> BLACK_HOLE_UNAFFECTED = modTag("black_hole_unaffected");
+        public static final TagKey<Item> EXPLOSION_RESISTANT = forgeTag("explosion_resistant");
         public static final TagKey<Item> OBSIDIAN_SKULLS = modTag("obsidian_skulls");
-        public static final TagKey<Item> INDESTRUCTIBLE_BLACKLISTED = modTag("indestructible_blacklisted");
         public static final TagKey<Item> FUNGYSS_STEMS = modTag("fungyss_stems");
         public static final TagKey<Item> CHERRYWOOD_LOGS = modTag("cherrywood_logs");
         public static final TagKey<Item> MYSTERYWOOD_LOGS = modTag("mysterywood_logs");
         public static final TagKey<Item> EDELWOOD_LOGS = modTag("edelwood_logs");
         public static final TagKey<Item> BLACKSMITH_GAVEL = modTag("blacksmith_gavel");
-        public static final TagKey<Item> ARCANE_GOLD_INGOTS = forgeTag("ingots/arcane_gold");
-        public static final TagKey<Item> ARCANE_GOLD_NUGGETS = forgeTag("nuggets/arcane_gold");
+        public static final TagKey<Item> DEORUM_INGOTS = forgeTag("ingots/deorum");
+        public static final TagKey<Item> DEORUM_NUGGETS = forgeTag("nuggets/deorum");
         public static final TagKey<Item> OBSIDIAN_INGOTS = forgeTag("ingots/obsidian");
         public static final TagKey<Item> MAGICAL_FARMLAND_BLACKLISTED = modTag("magical_farmland_blacklisted");
         public static final TagKey<Item> RUNIC_STONES = modTag("runic_stones");
         public static final TagKey<Item> RUNE_BLOCKS = modTag("rune_blocks");
         public static final TagKey<Item> ARCANE_CRYSTAL_ORES = modTag("arcane_crystal_ores");
-
+        
         public static final TagKey<Item> ETERNAL_INCOMPATIBLE = modTag("modifier/eternal_incompatible");
         public static final TagKey<Item> FIERY_INCOMPATIBLE = modTag("modifier/fiery_incompatible");
+        public static final TagKey<Item> MAGNETIZED_INCOMPATIBLE = modTag("modifier/magnetized_incompatible");
+        public static final TagKey<Item> DEMOLISHING_INCOMPATIBLE = modTag("modifier/demolishing_incompatible");
+        public static final TagKey<Item> AQUATIC_INCOMPATIBLE = modTag("modifier/aquatic_incompatible");
+        
+        public static final TagKey<Item> CLIBANO_CREATES_SOUL_FIRE = modTag("clibano/creates_soul_fire");
+        public static final TagKey<Item> CLIBANO_CREATES_ENCHANTED_FIRE = modTag("clibano/creates_enchanted_fire");
+        
+        public static final TagKey<Item> DEORUM_STORAGE_BLOCKS = forgeTag("storage_blocks/deorum");
+        public static final TagKey<Item> ARCANE_CRYSTAL_STORAGE_BLOCKS = forgeTag("storage_blocks/arcane_crystal");
+        public static final TagKey<Item> DARK_NETHER_STAR_STORAGE_BLOCKS = forgeTag("storage_blocks/dark_nether_star");
+        public static final TagKey<Item> STELLARITE_STORAGE_BLOCKS = forgeTag("storage_blocks/stellarite");
+        public static final TagKey<Item> OBSIDIAN_STORAGE_BLOCKS = forgeTag("storage_blocks/obsidian");
 
         private static TagKey<Item> forgeTag(String name) {
             return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("forge", name));

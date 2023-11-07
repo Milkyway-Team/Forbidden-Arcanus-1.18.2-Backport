@@ -1,5 +1,10 @@
 package com.stal111.forbidden_arcanus.common.block.entity.forge;
 
+import com.stal111.forbidden_arcanus.common.block.entity.forge.essence.EssenceType;
+import com.stal111.forbidden_arcanus.common.block.entity.forge.essence.EssencesDefinition;
+
+import java.util.function.IntSupplier;
+
 /**
  * Hephaestus Forge Level
  * Forbidden Arcanus - com.stal111.forbidden_arcanus.common.block.entity.forge.HephaestusForgeLevel
@@ -8,94 +13,61 @@ package com.stal111.forbidden_arcanus.common.block.entity.forge;
  * @version 2.0.0
  * @since 2021-06-29
  */
-public enum HephaestusForgeLevel {
-    ONE("1", 0, 200, 200, 1, 5000, 200, 1),
-    TWO("2", 1, 500, 500, 5, 10000, 300, 2),
-    THREE("3", 2, 800, 800, 10, 30000, 400, 3),
-    FOUR("4", 3, 1000, 1000, 100, 50000, 1000, 4),
-    X("X", 4, 3000, 3000, 666, 100000, 2000, 4);
-
-    private final String name;
-
+public enum HephaestusForgeLevel implements IntSupplier {
+    ONE(1, 1000, 10, 10000, 900),
+    TWO(2, 3000, 50, 15000, 1350),
+    THREE(3, 5000, 100, 30000, 2500),
+    FOUR(4, 10000, 500, 50000, 5000),
+    FIVE(5, 20000, 1000, 100000, 7500);
+    
     private final int index;
-
-    private final int maxAureal;
-    private final int maxCorruption;
-    private final int maxSouls;
-    private final int maxBlood;
-    private final int maxExperience;
-
-    private final int enhancerSlots;
-
-    HephaestusForgeLevel(String name, int index, int maxAureal, int maxCorruption, int maxSouls, int maxBlood, int maxExperience, int enhancerSlots) {
-        this.name = name;
+    private final EssencesDefinition maxEssences;
+    
+    HephaestusForgeLevel(int index, int maxAureal, int maxSouls, int maxBlood, int maxExperience) {
         this.index = index;
-        this.maxAureal = maxAureal;
-        this.maxCorruption = maxCorruption;
-        this.maxSouls = maxSouls;
-        this.maxBlood = maxBlood;
-        this.maxExperience = maxExperience;
-        this.enhancerSlots = enhancerSlots;
+        this.maxEssences = new EssencesDefinition(maxAureal, maxSouls, maxBlood, maxExperience);
     }
-
-    public String getName() {
-        return name;
-    }
-
+    
     public int getIndex() {
         return index;
     }
-
+    
+    public int getMaxAmount(EssenceType type) {
+        return this.maxEssences.get(type);
+    }
+    
     public int getMaxAureal() {
-        return maxAureal;
+        return this.maxEssences.get(EssenceType.AUREAL);
     }
-
-    public int getMaxCorruption() {
-        return maxCorruption;
-    }
-
+    
     public int getMaxSouls() {
-        return maxSouls;
+        return this.maxEssences.get(EssenceType.SOULS);
     }
-
+    
     public int getMaxBlood() {
-        return maxBlood;
+        return this.maxEssences.get(EssenceType.BLOOD);
     }
-
+    
     public int getMaxExperience() {
-        return maxExperience;
+        return this.maxEssences.get(EssenceType.EXPERIENCE);
     }
-
-    public int getEnhancerSlots() {
-        return enhancerSlots;
+    
+    public EssencesDefinition getMaxEssences() {
+        return this.maxEssences;
     }
-
-    public static HephaestusForgeLevel getRequiredLevelForSlot(int slot) {
-        for (HephaestusForgeLevel level : HephaestusForgeLevel.values()) {
-            if (level.getEnhancerSlots() == slot) {
-                return level;
-            }
-        }
-        return HephaestusForgeLevel.ONE;
-    }
-
-    public static HephaestusForgeLevel getFromName(String name) {
-        return switch (name) {
-            case "2" -> HephaestusForgeLevel.TWO;
-            case "3" -> HephaestusForgeLevel.THREE;
-            case "4" -> HephaestusForgeLevel.FOUR;
-            case "x" -> HephaestusForgeLevel.X;
-            default -> HephaestusForgeLevel.ONE;
-        };
-    }
-
+    
     public static HephaestusForgeLevel getFromIndex(int index) {
         return switch (index) {
-            case 1 -> HephaestusForgeLevel.TWO;
-            case 2 -> HephaestusForgeLevel.THREE;
-            case 3 -> HephaestusForgeLevel.FOUR;
-            case 4 -> HephaestusForgeLevel.X;
-            default -> HephaestusForgeLevel.ONE;
+            case 1 -> HephaestusForgeLevel.ONE;
+            case 2 -> HephaestusForgeLevel.TWO;
+            case 3 -> HephaestusForgeLevel.THREE;
+            case 4 -> HephaestusForgeLevel.FOUR;
+            default -> HephaestusForgeLevel.FIVE;
         };
+    }
+    
+    @Override
+    public int getAsInt() {
+        return this.index;
     }
 }

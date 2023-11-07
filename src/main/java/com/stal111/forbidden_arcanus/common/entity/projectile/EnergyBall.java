@@ -115,7 +115,7 @@ public class EnergyBall extends Projectile {
 
             this.level.addFreshEntity(lightningBolt);
         } else if (result.getType() == HitResult.Type.BLOCK) {
-            this.level.playSound(null, new BlockPos(result.getLocation()), ModSounds.dark_bolt_hit, SoundSource.NEUTRAL, 1.0F, 1.0F);
+            this.level.playSound(null, new BlockPos(result.getLocation()), ModSounds.DARK_BOLT_HIT.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
         }
 
         this.discard();

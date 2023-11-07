@@ -15,14 +15,15 @@ import javax.annotation.Nonnull;
 public enum ClibanoSideType implements StringRepresentable {
     OFF("off"),
     FIRE("fire"),
-    BLUE_FIRE("blue_fire");;
-
+    SOUL_FIRE("soul_fire"),
+    ENCHANTED_FIRE("enchanted_fire");
+    
     private final String name;
-
+    
     ClibanoSideType(String name) {
         this.name = name;
     }
-
+    
     @Nonnull
     @Override
     public String getSerializedName() {
